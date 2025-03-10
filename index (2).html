@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOIT - Курсы и Блог</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #000;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #F5A623;
+        }
+        .logo img {
+            height: 50px;
+            vertical-align: middle;
+        }
+        .header-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #F5A623;
+            text-align: center;
+            flex-grow: 1;
+            text-shadow: 2px 2px 4px rgba(245, 166, 35, 0.5);
+            letter-spacing: 2px;
+        }
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #F5A623;
+            font-weight: bold;
+            font-size: 20px;
+            text-shadow: 1px 1px 2px rgba(245, 166, 35, 0.3);
+            transition: all 0.3s ease;
+        }
+        nav a:hover {
+            text-shadow: 2px 2px 5px rgba(245, 166, 35, 0.6);
+            color: #E59400;
+        }
+        .logo-nav a {
+            margin-left: 10px;
+            vertical-align: middle;
+            text-decoration: none;
+            color: #F5A623;
+            font-weight: bold;
+            font-size: 20px;
+            text-shadow: 1px 1px 2px rgba(245, 166, 35, 0.3);
+            transition: all 0.3s ease;
+        }
+        .logo-nav a:hover {
+            text-shadow: 2px 2px 5px rgba(245, 166, 35, 0.6);
+            color: #E59400;
+        }
+        .slider-container {
+            position: relative;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .slider-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border: 4px solid #F5A623;
+            border-radius: 10px;
+            display: none;
+        }
+        .slider-image.active {
+            display: block;
+        }
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #F5A623;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        .prev-button {
+            left: 10px;
+        }
+        .next-button {
+            right: 10px;
+        }
+        .main-title {
+            text-align: center;
+            font-size: 36px;
+            color: #F5A623;
+            margin: 20px 0;
+            text-shadow: 1px 1px 3px rgba(245, 166, 35, 0.4);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .main-text {
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: #333;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            background: rgba(255, 245, 230, 0.3);
+            border-radius: 8px;
+        }
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        .feature-box {
+            width: 30%;
+            padding: 20px;
+            border: 2px solid #F5A623;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .feature-box h3 {
+            color: #F5A623;
+            text-shadow: 1px 1px 2px rgba(245, 166, 35, 0.3);
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .feature-box p {
+            color: #444;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            line-height: 1.5;
+        }
+        .ads-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        .ad-image {
+            width: 30%;
+            height: 200px;
+            object-fit: cover;
+            border: 2px solid #F5A623;
+            border-radius: 10px;
+        }
+        .form-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        .form-box {
+            width: 45%;
+            padding: 20px;
+            border: 2px solid #F5A623;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .form-box h3 {
+            color: #F5A623;
+            text-shadow: 1px 1px 2px rgba(245, 166, 35, 0.3);
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .form-box input {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+            padding: 15px;
+            border: 2px solid #F5A623;
+            border-radius: 10px;
+            background-color: #FFF5E6;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .form-box button {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+            padding: 15px;
+            background-color: #F5A623;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .form-box button:hover {
+            background-color: #E59400;
+        }
+        .contact-section {
+            width: 45%;
+            padding: 20px;
+            border: 2px solid #F5A623;
+            border-radius: 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-title {
+            font-size: 24px;
+            color: #F5A623;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(245, 166, 35, 0.3);
+        }
+        .contact-people {
+            display: flex;
+            justify-content: space-around;
+        }
+        .contact-person {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background-color: #808080;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .contact-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #F5A623;
+            text-shadow: 1px 1px 2px rgba(245, 166, 35, 0.3);
+        }
+        .contact-role {
+            margin-bottom: 10px;
+            color: #444;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+        .contact-link {
+            text-decoration: none;
+            color: #0088cc;
+            font-size: 24px;
+        }
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 2px solid #F5A623;
+            font-size: 14px;
+            color: #666;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 1024px) {
+    .container {
+        width: 90%;
+    }
+
+    .header-title {
+        font-size: 40px;
+    }
+
+    .features, .ads-section, .form-section, .contact-people {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .feature-box, .form-box, .contact-section {
+        width: 45%;
+    }
+
+    .ad-image {
+        width: 45%;
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .logo img {
+        height: 35px;
+    }
+
+    .header-title {
+        font-size: 32px;
+    }
+
+    nav {
+        margin-top: 5px;
+    }
+
+    nav a {
+        display: block;
+        margin: 5px 0;
+    }
+
+    .slider-container {
+        position: relative;
+    }
+
+    .slider-image {
+        height: 220px;
+    }
+
+    .slider-button {
+        padding: 6px;
+        font-size: 14px;
+    }
+
+    .features, .ads-section, .form-section, .contact-people {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-box, .form-box, .contact-section {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .ad-image {
+        width: 90%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .main-title {
+        font-size: 24px;
+    }
+
+    .main-text {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .contact-person {
+        margin-bottom: 20px;
+    }
+
+    .avatar {
+        width: 70px;
+        height: 70px;
+    }
+
+    footer {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) { /* Под iPhone SE 2 */
+    .container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .header-title {
+        font-size: 26px;
+    }
+
+    nav a {
+        font-size: 18px;
+    }
+
+    .slider-image {
+        height: 180px;
+    }
+
+    .slider-button {
+        padding: 5px;
+        font-size: 12px;
+    }
+
+    .main-title {
+        font-size: 22px;
+    }
+
+    .main-text {
+        font-size: 13px;
+    }
+
+    .feature-box, .form-box, .contact-section {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .ad-image {
+        width: 100%;
+    }
+
+    .avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    .contact-name {
+        font-size: 16px;
+    }
+
+    footer {
+        font-size: 10px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <img src="Logo.png" alt="GOIT Logo">
+                <span class="logo-nav">
+                    <a href="#">Курсы</a>
+                    <a href="#">Блог</a>
+                </span>
+            </div>
+            <div class="header-title">
+                GOIT
+            </div>
+            <nav>
+                <a href="#">Новости</a>
+                <a href="#">Отзывы/Вопросы</a>
+            </nav>
+        </header>
+
+        <!-- Slider -->
+        <div class="slider-container">
+            <img src="https://samlib.ru/img/m/monstrozar/piton/piton-51.jpg" alt="Image 1" class="slider-image active">
+            <img src="https://cdn.pixabay.com/photo/2014/12/30/10/39/code-583795_960_720.jpg" alt="Image 2" class="slider-image">
+            <img src="https://cdn-user84060.skyeng.ru/uploads/63343bce0692e422206238.png" alt="Image 3" class="slider-image">
+            <img src="https://qalight.ua/wp-content/uploads/2023/08/html-1024x484.png" alt="Image 4" class="slider-image">
+            <button class="slider-button prev-button">❮</button>
+            <button class="slider-button next-button">❯</button>
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="main-title">О Нас</h1>
+
+        <!-- Main Text -->
+        <div class="main-text">
+            Мы — команда GoIT, создатели онлайн-курсов по программированию, которые помогают людям по всему миру освоить востребованные IT-навыки и начать карьеру в технологической индустрии. Наша миссия — сделать образование доступным, практичным и эффективным, чтобы каждый, независимо от уровня подготовки, смог достичь своих целей.
+
+            GoIT был основан с идеей, что программирование — это не только профессия будущего, но и возможность для каждого раскрыть свой потенциал. Мы предлагаем курсы по популярным языкам программирования, таким как Python, JavaScript, PHP, Java и Go, а также обучаем веб-разработке, созданию приложений и другим IT-направлениям. Наши программы разработаны опытными преподавателями и практиками индустрии, которые делятся реальными знаниями и навыками, необходимыми для работы в IT.
+        </div>
+
+        <!-- Features Section -->
+        <h2 class="main-title">Почему именно мы</h2>
+        <div class="features">
+            <div class="feature-box">
+                <h3>Практический подход:</h3>
+                <p>Мы делаем акцент на реальных проектах и задачах, которые помогут вам сразу применять полученные знания.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Гибкость:</h3>
+                <p>Учитесь в удобное для вас время, из любой точки мира — наши курсы полностью онлайн.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Поддержка:</h3>
+                <p>Наши менторы и комьюнити всегда готовы помочь вам на каждом этапе обучения.</p>
+            </div>
+        </div>
+
+        <!-- Ads Section -->
+        <div class="ads-section">
+            <img src="https://nikvesti.com/images/imageeditor/2019/12/4/173930/173930_0.jpg" alt="Ad 1" class="ad-image">
+            <img src="https://www.vodafone.ua/storage/editor/fotos/500x500/4af98f70bf51d33f384d621a0d48afa5_1676023704.png" alt="Ad 2" class="ad-image">
+            <img src="https://marketer.ua/wp-content/uploads/2024/01/Profesor-rik.jpg" alt="Ad 3" class="ad-image">
+        </div>
+
+        <!-- Form and Contact Section -->
+        <div class="form-section">
+            <div class="form-box">
+                <h3>Форма обратной связи</h3>
+                <input type="text" placeholder="Введите ваше имя/никнейм">
+                <input type="text" placeholder="Введите вашу почту">
+                <input type="text" placeholder="Введите ваш вопрос">
+                <button>Отправить</button>
+            </div>
+            <div class="contact-section">
+                <h3 class="contact-title">Создатели сайта</h3>
+                <div class="contact-people">
+                    <div class="contact-person">
+                        <div class="avatar"></div>
+                        <div class="contact-name">Чеголя Артур</div>
+                        <div class="contact-role">Создатель сайта</div>
+                        <a href="https://t.me/VeLntt" class="contact-link" target="_blank">📱</a>
+                    </div>
+                    
+                    <div class="contact-person">
+                        <div class="avatar"></div>
+                        <div class="contact-name">Игнатенко Артём</div>
+                        <div class="contact-role">Тестировщик</div>
+                        <a href="https://t.me/zyfix" class="contact-link" target="_blank">📱</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            2020-2025 Сайт создан Чеголя Артуром Все права защищены
+        </footer>
+    </div>
+
+    <!-- JavaScript for Slider -->
+    <script>
+        const images = document.querySelectorAll('.slider-image');
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        let currentIndex = 0;
+
+        // Показать первое изображение при загрузке
+        images[currentIndex].classList.add('active');
+
+        // Функция для переключения на следующее изображение
+        function showNextImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+
+        // Функция для переключения на предыдущее изображение
+        function showPrevImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+
+        // Обработчики событий для кнопок
+        nextButton.addEventListener('click', showNextImage);
+        prevButton.addEventListener('click', showPrevImage);
+    </script>
+</body>
+</html>
